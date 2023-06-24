@@ -1,14 +1,19 @@
-# x86 Bootloader Template
-This repository is template for creating x86 bootloader, or testing x86 instructions.
+# EmergEscapeRamp
+![Changwon_Tunnel_Emerg_Escape_Ramp](https://github.com/ldmsys/x86-bootloader-template/assets/16889349/f16cf07d-86ee-4d78-a651-57a3248d3cbc)
 
-The example code contains simple bootloader for saying colorful "Hello, World" in real mode.
+(An Emergency escape ramp located at exit of Changwon Tunnel, Seongsan-gu, Changwon, Gyeongsangnam-do, Republic of Korea.)
+
+...for QEMU/KVM (such as virt-manager).
 
 ## Usage
-> $ nasm example.S -f bin -o example.bin
+> $ nasm escape.S -f bin -o escape.bin
 >
-> $ qemu-img convert -O vpc example.bin example.vhd
+> $ qemu-img convert -O vpc escape.bin escape.vhd
 >
-> $ qemu-system-i386 -m 128 -hda example.vhd
+> $ qemu-system-i386 -m 128 -hda escape.vhd
+
+## To-dos
+ * [ ] Make it work on every ACPI-compliant computers
 
 ## License
-[Unlicense](./UNLICENSE). Of a course, you can apply whatever license do you prefer.
+[Unlicense](./UNLICENSE).
