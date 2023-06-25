@@ -15,5 +15,8 @@
 ## To-dos
  * [ ] Make it work on every ACPI-compliant computers
 
+## Acknowledgement
+ * [OSDev Wiki Shutdown Article](https://wiki.osdev.org/Shutdown) Thank OSDev contributors for mentioning QEMU-specific shutdown method!
+
 ## License
 [Unlicense](./UNLICENSE).
