@@ -75,7 +75,7 @@ print:
         ret
 
 
-prompt: db "Emergency Escape Ramp (for QEMU/KVM, @ldmsys)", 0Ah, 0Ah, "Press any key to shutdown, Ctrl-Alt-Delete for restart...", 00h
+prompt: db "Emergency Escape Ramp (@ldmsys)", 0Ah, 0Ah, "Press any key to shutdown, Ctrl-Alt-Delete for restart...", 00h
 failprompt: db "If you seeing this message, shutdown failed.", 0Ah, "Press any key to restart...", 00h
 
 times 510-($-$$) db 00h ; fill zero to fit 512 bytes
