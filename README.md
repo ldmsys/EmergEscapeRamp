@@ -3,7 +3,9 @@
 
 (An Emergency escape ramp located at exit of Changwon Tunnel, Seongsan-gu, Changwon, Gyeongsangnam-do, Republic of Korea.)
 
-...for QEMU/KVM (such as virt-manager).
+...for APM 1.1 compliant computers. This requests system shutdown to APM.
+
+Especially useful when virt-manager has been deadlocked and all you can do is rebooting the computer.
 
 ## Usage
 > $ nasm escape.S -f bin -o escape.bin
@@ -12,11 +14,8 @@
 >
 > $ qemu-system-i386 -m 128 -hda escape.vhd
 
-## To-dos
- * [ ] Make it work on every ACPI-compliant computers
-
 ## Acknowledgement
- * [OSDev Wiki Shutdown Article](https://wiki.osdev.org/Shutdown) Thank OSDev contributors for mentioning QEMU-specific shutdown method!
+ * [TECH Help!](http://www.techhelpmanual.com/29-advance_power_management__apm__functions.html) by Flambeaux Software, Inc. - for amazing APM API documentation
 
 ## License
 [Unlicense](./UNLICENSE).

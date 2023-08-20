@@ -7,18 +7,42 @@ call print
 xor ah, ah ; wait until any key
 int 16h ; invoke keyboard services
 
-; Source: https://wiki.osdev.org/Shutdown
-mov dx, 0xB004 ; Emergency Escape (QEMU)
-mov ax, 0x2000
-out dx, ax
-mov dx, 0x0604 ; Emergency Escape (QEMU-newer)
-out dx, ax
-mov dx, 0x4004 ; Emergency Escape (VirtualBox)
-mov ax, 0x3400
-out dx, ax
+; Reference: http://www.techhelpmanual.com/29-advance_power_management__apm__functions.html
 
+mov ax, 0x5300 ; APM lookup
+xor bx, bx
+int 15h ; check for APM availability
+
+jc failed ; if cf == cy?
+
+cmp bx, 0x504d ; is bx == 'PM'?
+jne failed
+
+cmp ax, 0x0101 ; is ax >= 0x0101?
+jl failed
+
+shr cl, 3
+and cl, 1
+cmp cl, 1 ; if cx's third bit set?
+je failed
+
+mov ax, 0x5301 ; APM registration
+xor bx, bx
+int 15h ; call
+
+jc failed ; if cf == cy?
+
+mov ax, 0x5307 ; set power state
+mov bx, 1 ; all devices by apm bios
+mov cx, 3 ; power state off
+int 15h ; if this succeed, following statements will never be executed.
+ 
+failed:
 mov si, failprompt
 call print
+
+xor ah, ah ; wait until any key
+int 16h ; invoke keyboard services
 
 jmp 0xFFFF:0 ; reboot
 jmp $ ; this should never executed
